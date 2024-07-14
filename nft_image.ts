@@ -23,15 +23,16 @@ const signer = createSignerFromKeypair(umi, keypair);
 umi.use(signerIdentity(signer));
 const uploader = createBundlrUploader(umi);
 
-(async () => {
-	const file = './assets/rabbit.jpg';
+export const nft_init = async ({ path }: { path: string }) => {
+	const file = path;
 	const buffer = await readFile(file);
 
 	try {
-		const image = createGenericFile(buffer, 'rabbit1');
-		const [imageUrl] = await uploader.upload([image]);
-		console.log(imageUrl);
+		const image = createGenericFile(buffer, path);
+		const [imageURI] = await uploader.upload([image]);
+		console.log('Image URI uploaded-------------->', imageURI);
+		return imageURI;
 	} catch (error) {
 		console.log(error);
 	}
-})();
+};

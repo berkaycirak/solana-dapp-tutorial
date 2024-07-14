@@ -23,25 +23,32 @@ umi.use(signerIdentity(signer));
 
 const uploader = createBundlrUploader(umi);
 
-(async () => {
-	const imageUrl =
-		'https://arweave.net/pBnFc4-cNyrNOg1PIgu5EYyATRipQyHacpzxgI1zWIg';
-
+export const nft_metadata = async ({
+	imgUri,
+	image_type,
+	nft_description,
+	nft_name,
+}: {
+	imgUri: string;
+	nft_name: string;
+	nft_description: string;
+	image_type: string;
+}) => {
 	const metadata = {
-		name: 'Thumper the Brave ',
-		description:
-			'Thumper wields a carrot-shaped sword with fierce determination. Despite his warrior spirit, his floppy ears and fluffy tail make him irresistibly adorable.',
-		image: imageUrl,
+		name: nft_name,
+		description: nft_description,
+		image: imgUri,
 		properties: {
 			files: [
 				{
-					type: 'image/png',
-					uri: imageUrl,
+					type: image_type,
+					uri: imgUri,
 				},
 			],
 		},
 	};
 
-	const myNewUrl = await uploader.uploadJson(metadata);
-	console.log(myNewUrl);
-})();
+	const jsonURI = await uploader.uploadJson(metadata);
+	console.log('jsonURI uploaded------------------->', jsonURI);
+	return jsonURI;
+};

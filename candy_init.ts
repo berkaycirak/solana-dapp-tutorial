@@ -23,37 +23,48 @@ const keypair = umi.eddsa.createKeypairFromSecretKey(
 const signer = createSignerFromKeypair(umi, keypair);
 umi.use(signerIdentity(signer));
 
-(async () => {
-	const candyMachine = generateSigner(umi);
-	const candyMachineTx = await create(umi, {
-		candyMachine,
-		collectionMint: publicKey(
-			'HKEcgQAYgsgqcyrZu2ANbw3jHDi6RgnrzSJZdEobhjcY'
-		),
-		collectionUpdateAuthority: signer,
-		tokenStandard: TokenStandard.NonFungible,
-		sellerFeeBasisPoints: percentAmount(9.99, 2), // 9.99%
-		itemsAvailable: 1,
-		creators: [
-			{
-				address: signer.publicKey,
-				verified: true,
-				percentageShare: 100,
-			},
-		],
-		configLineSettings: some({
-			prefixName: '',
-			nameLength: 32,
-			prefixUri: '',
-			uriLength: 200,
-			isSequential: false,
-		}),
-	});
+export const candy_init = async ({
+	availableItem,
+	collectionMintAddress,
+}: {
+	availableItem: number;
+	collectionMintAddress: string;
+}) => {
+	try {
+		const candyMachine = generateSigner(umi);
+		const candyMachineTx = await create(umi, {
+			candyMachine,
+			collectionMint: publicKey(collectionMintAddress),
+			collectionUpdateAuthority: signer,
+			tokenStandard: TokenStandard.NonFungible,
+			sellerFeeBasisPoints: percentAmount(9.99, 2), // 9.99%
+			itemsAvailable: availableItem,
+			creators: [
+				{
+					address: signer.publicKey,
+					verified: true,
+					percentageShare: 100,
+				},
+			],
+			configLineSettings: some({
+				prefixName: '',
+				nameLength: 32,
+				prefixUri: '',
+				uriLength: 200,
+				isSequential: false,
+			}),
+		});
 
-	const createdCandyTx = await candyMachineTx.sendAndConfirm(umi);
+		const createdCandyTx = await candyMachineTx.sendAndConfirm(umi);
 
-	console.log(
-		'Created Candy Machine-------->',
-		bs58.encode(createdCandyTx.signature)
-	);
-})();
+		console.log(
+			'Created Candy Machine-------->',
+			bs58.encode(createdCandyTx.signature)
+		);
+	} catch (error) {
+		console.log(
+			'An Error occured while Candy_NFT_Mint------------>',
+			error
+		);
+	}
+};
