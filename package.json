@@ -1,33 +1,36 @@
 {
-	"name": "solana_token_mint",
-	"module": "index.ts",
-	"scripts": {
-		"keygen": "ts-node ./keygen.ts",
-		"airdrop": "ts-node ./airdrop.ts",
-		"sk_decode": "ts-node ./sk_decode.ts",
-		"spl_init": "ts-node ./spl_init.ts",
-		"spl_mint": "ts-node ./spl_mint.ts",
-		"spl_transfer": "ts-node ./spl_transfer.ts",
-		"spl_metadata": "ts-node ./spl_metadata.ts",
-		"nft_image": "ts-node ./nft_image.ts",
-		"nft_metadata": "ts-node ./nft_metadata.ts",
-		"nft_mint": "ts-node ./nft_mint.ts"
-	},
-	"dependencies": {
-		"@metaplex-foundation/mpl-token-metadata": "^3.2.1",
-		"@metaplex-foundation/umi": "^0.9.2",
-		"@metaplex-foundation/umi-bundle-defaults": "^0.9.2",
-		"@metaplex-foundation/umi-uploader-bundlr": "^0.9.2",
-		"@solana/spl-token": "0.4.1",
-		"@solana/web3.js": "^1.95.0",
-		"@types/node": "^20.14.10",
-		"bs58": "^6.0.0"
-	},
-	"devDependencies": {
-		"@types/bun": "latest",
-		"ts-node": "^10.9.2"
-	},
-	"peerDependencies": {
-		"typescript": "^5.0.0"
-	}
+  "name": "solana_token_mint",
+  "module": "index.ts",
+  "scripts": {
+    "keygen": "ts-node ./keygen.ts",
+    "airdrop": "ts-node ./airdrop.ts",
+    "sk_decode": "ts-node ./sk_decode.ts",
+    "spl_init": "ts-node ./spl_init.ts",
+    "spl_mint": "ts-node ./spl_mint.ts",
+    "spl_transfer": "ts-node ./spl_transfer.ts",
+    "spl_metadata": "ts-node ./spl_metadata.ts",
+    "nft_image": "ts-node ./nft_image.ts",
+    "nft_metadata": "ts-node ./nft_metadata.ts",
+    "nft_mint": "ts-node ./nft_mint.ts"
+  },
+  "dependencies": {
+    "@metaplex-foundation/mpl-candy-machine": "^6.0.1",
+    "@metaplex-foundation/mpl-core": "^1.0.2",
+    "@metaplex-foundation/mpl-token-metadata": "^3.2.1",
+    "@metaplex-foundation/umi": "^0.9.2",
+    "@metaplex-foundation/umi-bundle-defaults": "^0.9.2",
+    "@metaplex-foundation/umi-uploader-bundlr": "^0.9.2",
+    "@metaplex-foundation/umi-uploader-nft-storage": "^0.9.2",
+    "@solana/spl-token": "0.4.1",
+    "@solana/web3.js": "^1.95.0",
+    "@types/node": "^20.14.10",
+    "bs58": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "ts-node": "^10.9.2"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
 }

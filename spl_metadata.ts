@@ -24,7 +24,7 @@ import {
 
 	// We add metadata into token account, therefore we need its public key
 	const mint = publicKey(
-		'BLZZjhv3vPJCktBtZ6yxHXm5zvXBCQj489aPdgAJz4xj'
+		'47uoc4b1K3jCizkzWoKyggcjhVsVzb493UApFUWmMPMC'
 	);
 	// Who will sign the transactions are required
 	const signer = createSignerFromKeypair(umi, keypair);
@@ -36,8 +36,8 @@ import {
 	};
 
 	const data: DataV2Args = {
-		name: 'Captain',
-		symbol: 'CPT',
+		name: 'Rabiddo',
+		symbol: 'RBD',
 		collection: null,
 		creators: null,
 		sellerFeeBasisPoints: 500,

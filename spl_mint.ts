@@ -21,7 +21,7 @@ import {
 	const token_decimals = 1_000_000;
 
 	const mint = new PublicKey(
-		'BLZZjhv3vPJCktBtZ6yxHXm5zvXBCQj489aPdgAJz4xj'
+		'47uoc4b1K3jCizkzWoKyggcjhVsVzb493UApFUWmMPMC'
 	);
 
 	const ATA = await getOrCreateAssociatedTokenAccount(
@@ -38,7 +38,7 @@ import {
 		mint,
 		ATA.address,
 		keypair.publicKey,
-		100 * token_decimals
+		5000 * token_decimals
 	);
 	console.log(mintTx);
 })();

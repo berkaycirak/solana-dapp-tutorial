@@ -8,10 +8,12 @@ import {
 	createSignerFromKeypair,
 	signerIdentity,
 } from '@metaplex-foundation/umi';
-import { createBundlrUploader } from '@metaplex-foundation/umi-uploader-bundlr';
+
 import { readFile } from 'fs/promises';
+import { createBundlrUploader } from '@metaplex-foundation/umi-uploader-bundlr';
 
 const umi = createUmi(clusterApiUrl('devnet'));
+
 const keypair = umi.eddsa.createKeypairFromSecretKey(
 	new Uint8Array(wallet)
 );
@@ -19,15 +21,17 @@ const keypair = umi.eddsa.createKeypairFromSecretKey(
 // Who will sign the transactions are required
 const signer = createSignerFromKeypair(umi, keypair);
 umi.use(signerIdentity(signer));
-
 const uploader = createBundlrUploader(umi);
 
 (async () => {
-	const file = './generug.png';
+	const file = './assets/rabbit.jpg';
 	const buffer = await readFile(file);
 
-	const image = createGenericFile(buffer, 'generug.png');
-	const [imageUrl] = await uploader.upload([image]);
-
-	console.log(imageUrl); //https://arweave.net/KDwZW2G6uaDsmv9mTtjgYxzT3YM7KiRU3mRILNgA9ag
+	try {
+		const image = createGenericFile(buffer, 'rabbit1');
+		const [imageUrl] = await uploader.upload([image]);
+		console.log(imageUrl);
+	} catch (error) {
+		console.log(error);
+	}
 })();

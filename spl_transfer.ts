@@ -19,11 +19,11 @@ const connection = new Connection(
 
 // That is required for to know which token we will transfer
 const mint = new PublicKey(
-	'BLZZjhv3vPJCktBtZ6yxHXm5zvXBCQj489aPdgAJz4xj'
+	'47uoc4b1K3jCizkzWoKyggcjhVsVzb493UApFUWmMPMC'
 );
 
 const to = new PublicKey(
-	'DCxAqfLFnN9uc5Ysix9Si5aT4rqNPHE677keYsUinnvk'
+	'BKgR2XW5fFBkPWWzk4L4XCEQ7G6yUAcGDLxfwPRF7hkS'
 );
 
 (async () => {

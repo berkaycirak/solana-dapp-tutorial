@@ -8,8 +8,11 @@ import {
 	signerIdentity,
 } from '@metaplex-foundation/umi';
 import { createBundlrUploader } from '@metaplex-foundation/umi-uploader-bundlr';
+import { mplTokenMetadata } from '@metaplex-foundation/mpl-token-metadata';
 
-const umi = createUmi(clusterApiUrl('devnet'));
+const umi = createUmi(clusterApiUrl('devnet')).use(
+	mplTokenMetadata()
+);
 const keypair = umi.eddsa.createKeypairFromSecretKey(
 	new Uint8Array(wallet)
 );
@@ -22,23 +25,13 @@ const uploader = createBundlrUploader(umi);
 
 (async () => {
 	const imageUrl =
-		'https://arweave.net/KDwZW2G6uaDsmv9mTtjgYxzT3YM7KiRU3mRILNgA9ag';
+		'https://arweave.net/pBnFc4-cNyrNOg1PIgu5EYyATRipQyHacpzxgI1zWIg';
 
 	const metadata = {
-		name: 'Captain Carpet',
-		symbol: 'CC',
-		description: 'That carpet belongs to captain',
+		name: 'Thumper the Brave ',
+		description:
+			'Thumper wields a carrot-shaped sword with fierce determination. Despite his warrior spirit, his floppy ears and fluffy tail make him irresistibly adorable.',
 		image: imageUrl,
-		attributes: [
-			{
-				trait_type: 'color',
-				value: 'black',
-			},
-			{
-				trait_type: 'rarity',
-				value: 'epic',
-			},
-		],
 		properties: {
 			files: [
 				{
