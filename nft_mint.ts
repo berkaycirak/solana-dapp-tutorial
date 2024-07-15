@@ -27,18 +27,19 @@ umi.use(signerIdentity(signer));
 // First create an nft and mint it as isCollection=true
 
 export const mint_nft = async ({
-	collection_name,
+	name,
 	uri,
 }: {
-	collection_name: string;
+	name: string;
 	uri: string;
+	type: 'collection' | 'nft';
 }) => {
 	try {
-		const collectionMint = generateSigner(umi);
+		const mintAddress = generateSigner(umi);
 		const createNftTx = await createNft(umi, {
-			mint: collectionMint,
+			mint: mintAddress,
 			authority: signer,
-			name: collection_name,
+			name: name,
 			uri: uri,
 			sellerFeeBasisPoints: percentAmount(9.99, 2), // 9.99%
 			isCollection: true,
@@ -48,6 +49,8 @@ export const mint_nft = async ({
 			'NFT_CREATED TX------------>',
 			bs58.encode(createNftTx.signature)
 		);
+
+		return mintAddress.publicKey;
 	} catch (error) {
 		console.log(error);
 	}

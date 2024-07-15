@@ -61,6 +61,7 @@ export const candy_init = async ({
 			'Created Candy Machine-------->',
 			bs58.encode(createdCandyTx.signature)
 		);
+		return candyMachine.publicKey;
 	} catch (error) {
 		console.log(
 			'An Error occured while Candy_NFT_Mint------------>',

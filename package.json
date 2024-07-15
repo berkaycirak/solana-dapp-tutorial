@@ -1,6 +1,6 @@
 {
 	"name": "solana_token_mint",
-	"module": "index.ts",
+	"module": "es2022",
 	"scripts": {
 		"keygen": "ts-node ./keygen.ts",
 		"airdrop": "ts-node ./airdrop.ts",
